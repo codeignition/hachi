@@ -1,0 +1,27 @@
+.container.col-md-6.col-md-offset-3.col-sm-10.col-sm-offset-1
+  .header.clearfix
+    nav
+      ul.nav.nav-pills.pull-right
+        li.active[role="presentation"]
+          a[href="#"]
+            | Home
+        li[role="presentation"]
+          a[href="#"]
+            | About
+        li[role="presentation"]
+          = link_to 'Register', new_user_registration_path
+    h3.text-muted
+      | Hachi
+  .jumbotron
+    h3
+      | Login
+    p
+      input.form-control[type="email" placeholder="Email"]
+    p
+      input.form-control[type="password" placeholder="Password"]
+    p
+      a.btn.btn-lg.btn-success[href="#" role="button"]
+        | Login
+  footer.footer
+    p
+      | © 2015 Codeignition, Inc.

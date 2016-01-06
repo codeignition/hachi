@@ -1,0 +1,7 @@
+<h2>You're almost done! Now create a password to securely access your account.</h2>
+<%= form_for(resource, as: resource_name, url: confirm_path) do |f| %>
+  <%= f.text_field(:password, autofocus: true) %>
+  <%= f.text_field(:password_confirmation) %>
+  <%= f.hidden_field(:confirmation_token) %>
+  <%= f.submit %>
+<% end %>
