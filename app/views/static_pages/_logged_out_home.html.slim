@@ -15,13 +15,13 @@
   .jumbotron
     h3
       | Login
-    p
-      input.form-control[type="email" placeholder="Email"]
-    p
-      input.form-control[type="password" placeholder="Password"]
-    p
-      a.btn.btn-lg.btn-success[href="#" role="button"]
-        | Login
+    = form_for(:user, url: session_path(:user)) do |f|
+      p
+        = f.email_field :email, class: 'form-control', placeholder: 'Email', autofocus: true
+      p
+        = f.password_field :password, class: 'form-control', placeholder: 'Password', autofocus: true
+      p
+        = f.submit "Login", class: 'btn btn-lg btn-success'
   footer.footer
     p
       | © 2015 Codeignition, Inc.
