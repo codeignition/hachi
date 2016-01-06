@@ -1,0 +1,13 @@
+.header.clearfix
+  nav
+    ul.nav.nav-pills.pull-right
+      - unless user_signed_in?
+        li.active[role="presentation"]
+          = link_to 'Login', root_url
+        li[role="presentation"]
+          = link_to 'Register', new_user_registration_path
+      - else
+        li.active[role="presentation"]
+          = link_to 'Logout', destroy_user_session_path, method: :delete
+  h3.text-muted
+    | Hachi
