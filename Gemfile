@@ -12,6 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sqlite3'
 gem 'slim-rails'
+gem 'doorkeeper'
+
 group :development, :test do
   gem 'byebug'
 end
