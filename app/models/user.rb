@@ -17,10 +17,6 @@ class User < ActiveRecord::Base
     password == password_confirmation && !password.blank?
   end
 
-  def registered?
-    registered
-  end
-
   def register!
     update_attributes(registered: true)
   end
