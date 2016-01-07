@@ -1,0 +1,17 @@
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <% unless user_signed_in? %>
+        <li role="presentation">
+          <%= link_to 'Register', new_user_registration_path %>
+        </li>
+        <li role="presentation">
+          <%= link_to 'Forgot Password', new_user_password_path %>
+        </li>
+      <% else %>
+        <li role='presentation'><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      <% end  %>
+    </ul>
+    <h3 class='text-muted'><%= link_to 'Hachi', root_path %></h3>
+  </nav>
+</div>
