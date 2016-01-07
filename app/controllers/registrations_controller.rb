@@ -5,6 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
       user.send_confirmation_instructions
       user.register!
     end
+    flash[:notice] = 'A confirmation email has been sent to you'
     redirect_to root_path
   end
 

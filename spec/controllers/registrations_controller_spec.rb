@@ -31,6 +31,12 @@ RSpec.describe RegistrationsController, :type => :controller do
           post :create, user: { email: registered_valid_user.email }
         }.to_not change { ActionMailer::Base.deliveries.count }
       end
+
+      it 'it has the correct flash notice promising a confirmation email sent' do
+        valid_user = create(:valid_user)
+        post :create, user: { email: valid_user.email }
+        expect(flash[:notice]).to eq('A confirmation email has been sent to you')
+      end
     end
 
     context 'a user who is not present in the database' do
@@ -42,7 +48,7 @@ RSpec.describe RegistrationsController, :type => :controller do
 
       it 'is not registered' do
         user = build(:valid_user)
-        post :create, user: attributes_for(:valid_user)
+        post :create, user: { email: user.email }
         expect(user).to_not be_registered
       end
     end
