@@ -1,0 +1,16 @@
+.container.col-md-6.col-md-offset-3.col-sm-10.col-sm-offset-1
+  == render partial: 'layouts/navbar'
+  .jumbotron
+    h3
+      | Enter New Password to Confirm Account
+    = form_for(resource, as: resource_name, url: confirm_path) do |f|
+      p
+        = f.password_field :password, class: 'form-control', placeholder: 'Password', autofocus: true
+      p
+        = f.password_field :password_confirmation, class: 'form-control', placeholder: 'Confirm Password', autofocus: true
+      p
+        = f.submit "Confirm", class: 'btn btn-lg btn-success'
+      = f.hidden_field(:confirmation_token)
+  footer.footer
+    p
+      | © 2015 Codeignition, Inc.
