@@ -1,0 +1,14 @@
+.container.col-md-6.col-md-offset-3.col-sm-10.col-sm-offset-1
+  == render partial: 'layouts/navbar'
+  .jumbotron
+    h3
+      | Forgot your password?
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = devise_error_messages!
+      p
+        = f.email_field :email, class: 'form-control', placeholder: 'Email', autofocus: true
+      p
+        = f.submit 'Send me reset password instructions', class: 'btn btn-lg btn-success'
+  footer.footer
+    p
+      | © 2015 Codeignition, Inc.
