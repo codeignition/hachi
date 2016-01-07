@@ -17,4 +17,9 @@ RSpec.describe User, :type => :model do
     user.update_attributes(registered: true)
     expect(user).to be_registered
   end
+
+  it 'should not be active by default' do
+    user = create(:valid_user)
+    expect(user).to_not be_active
+  end
 end

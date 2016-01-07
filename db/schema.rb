@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107054629) do
+ActiveRecord::Schema.define(version: 20160107065335) do
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "user_id",        null: false
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160107054629) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "registered",             default: false
+    t.boolean  "active",                 default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

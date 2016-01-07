@@ -1,7 +1,5 @@
 class AddRegisteredToUser < ActiveRecord::Migration
   def change
-    change_table :users do |t|
-      t.boolean 'registered', default: false
-    end
+    add_column :users, :registered, :boolean, default: false
   end
 end
