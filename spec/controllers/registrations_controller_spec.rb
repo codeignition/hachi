@@ -24,6 +24,13 @@ RSpec.describe RegistrationsController, :type => :controller do
         valid_user.reload
         expect(valid_user).to be_registered
       end
+
+      it 'and is registered already, a confirmation email is not queued' do
+        registered_valid_user = create(:valid_user, registered: true)
+        expect {
+          post :create, user: { email: registered_valid_user.email }
+        }.to_not change { ActionMailer::Base.deliveries.count }
+      end
     end
 
     context 'a user who is not present in the database' do
