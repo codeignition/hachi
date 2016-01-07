@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def registered?
     registered
   end
+
+  def register!
+    update_attributes(registered: true)
+  end
 end

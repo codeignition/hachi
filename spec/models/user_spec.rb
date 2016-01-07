@@ -22,4 +22,10 @@ RSpec.describe User, :type => :model do
     user = create(:valid_user)
     expect(user).to_not be_active
   end
+
+  it 'remains registered when registered again' do
+    user = create(:valid_user, registered: true)
+    user.register!
+    expect(user).to be_registered
+  end
 end
