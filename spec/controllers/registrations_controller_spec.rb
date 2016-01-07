@@ -51,6 +51,11 @@ RSpec.describe RegistrationsController, :type => :controller do
         post :create, user: { email: user.email }
         expect(user).to_not be_registered
       end
+
+      it 'it has the correct flash notice mentioning that the user is not a part of the organization' do
+        post :create, user: { email: 'test_999test@example.com' }
+        expect(flash[:notice]).to eq('You are not a part of this organization')
+      end
     end
   end
 end

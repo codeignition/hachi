@@ -4,8 +4,10 @@ class RegistrationsController < Devise::RegistrationsController
     if (user_found?(user) && !user.registered?)
       user.send_confirmation_instructions
       user.register!
+      flash[:notice] = 'A confirmation email has been sent to you'
+    else
+      flash[:notice] = 'You are not a part of this organization'
     end
-    flash[:notice] = 'A confirmation email has been sent to you'
     redirect_to root_path
   end
 
