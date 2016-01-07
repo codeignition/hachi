@@ -6,4 +6,9 @@ RSpec.describe User, :type => :model do
       User.create(email: 'test_1@example.com')
     }.to_not change { ActionMailer::Base.deliveries.count }
   end
+
+  it 'should not be registered by default' do
+    user = User.create(email: 'test_1@example.com')
+    expect(user).to_not be_registered
+  end
 end
