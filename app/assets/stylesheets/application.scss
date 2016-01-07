@@ -1,2 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "colors";
+
+.notice {
+  text-align: center;
+  color: $notice-green;
+}
+
+.alert {
+  text-align: center;
+  color: $alert-red;
+}
