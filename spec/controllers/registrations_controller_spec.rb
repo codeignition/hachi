@@ -37,6 +37,12 @@ RSpec.describe RegistrationsController, :type => :controller do
         post :create, user: { email: valid_user.email }
         expect(flash[:notice]).to eq('A confirmation email has been sent to you')
       end
+
+      it 'and is registered already, it has the correct flash notice mentioning that he is already registered' do
+        registered_valid_user = create(:valid_user, registered: true)
+        post :create, user: { email: registered_valid_user.email }
+        expect(flash[:notice]).to eq('You have already registered')
+      end
     end
 
     context 'a user who is not present in the database' do

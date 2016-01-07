@@ -1,7 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     user = User.find_by_email(params['user']['email'])
-    if (user_found?(user) && !user.registered?)
+    if (user_found?(user) && user.registered?)
+      flash[:notice] = 'You have already registered'
+    elsif (user_found?(user) && !user.registered?)
       user.send_confirmation_instructions
       user.register!
       flash[:notice] = 'A confirmation email has been sent to you'
