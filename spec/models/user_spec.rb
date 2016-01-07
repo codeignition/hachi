@@ -11,4 +11,10 @@ RSpec.describe User, :type => :model do
     user = User.create(email: 'test_1@example.com')
     expect(user).to_not be_registered
   end
+
+  it 'can be registered' do
+    user = User.create(email: 'test_1@example.com')
+    user.update_attributes(registered: true)
+    expect(user).to be_registered
+  end
 end
