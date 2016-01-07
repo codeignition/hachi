@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  def send_on_create_confirmation_instructions; end
+
   def password_required?
     super if confirmed?
   end
