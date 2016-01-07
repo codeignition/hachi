@@ -18,7 +18,7 @@ RSpec.describe RegistrationsController, :type => :controller do
       }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
-    it 'is registered if he is valid' do
+    it 'is registered if he is present' do
       valid_user = create(:valid_user)
       post :create, user: attributes_for(:valid_user)
       valid_user.reload
@@ -29,6 +29,12 @@ RSpec.describe RegistrationsController, :type => :controller do
       expect {
         post :create, user: {email: 'unsaved_user-email@example.com'}
       }.to_not change { ActionMailer::Base.deliveries.count }
+    end
+
+    it 'is not registered if he is not present' do
+      user = build(:valid_user)
+      post :create, user: attributes_for(:valid_user)
+      expect(user).to_not be_registered
     end
   end
 end
