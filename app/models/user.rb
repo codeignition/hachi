@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :name, presence: true
+  before_create :set_uid_same_as_name
 
   def send_on_create_confirmation_instructions; end
 
@@ -21,5 +22,9 @@ class User < ActiveRecord::Base
 
   def register!
     update_attributes(registered: true)
+  end
+
+  def set_uid_same_as_name
+    self.uid = self.name
   end
 end

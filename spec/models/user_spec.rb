@@ -40,4 +40,14 @@ RSpec.describe User, :type => :model do
     user.save
     expect(user).to_not be_valid
   end
+
+  it 'has a uid' do
+    user = create(:valid_user)
+    expect(user).to respond_to(:uid)
+  end
+
+  it 'has uid same as name' do
+    user = create(:valid_user)
+    expect(user.uid).to eq(user.name)
+  end
 end
