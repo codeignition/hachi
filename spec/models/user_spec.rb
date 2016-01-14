@@ -40,4 +40,21 @@ RSpec.describe User, :type => :model do
     user.save
     expect(user).to_not be_valid
   end
+
+  it 'has a uid' do
+    user = create(:valid_user)
+    expect(user).to respond_to(:uid)
+  end
+
+  it 'should have uid same as name' do
+    user = create(:valid_user)
+    expect(user.uid).to eq(user.name)
+  end
+
+  it 'should have uid same as the new name if name is changed' do
+    user = create(:valid_user)
+    new_name = 'Test New'
+    user.update_attributes(name: new_name)
+    expect(user.uid).to eq(new_name)
+  end
 end

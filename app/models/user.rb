@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  before_create :set_uid_same_as_name
+  before_update :set_uid_same_as_name
+
   def send_on_create_confirmation_instructions; end
 
   def password_required?
@@ -21,5 +24,10 @@ class User < ActiveRecord::Base
 
   def register!
     update_attributes(registered: true)
+  end
+
+  private
+  def set_uid_same_as_name
+    self.uid = self.name
   end
 end
