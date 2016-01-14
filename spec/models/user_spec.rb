@@ -50,4 +50,14 @@ RSpec.describe User, :type => :model do
     user = create(:valid_user)
     expect(user.uid).to eq(user.name)
   end
+
+  it 'has a uid number' do
+    user = create(:valid_user)
+    expect(user).to respond_to(:uid_number)
+  end
+
+  it 'has uid number of value 10000 (lower bound) plus value of id' do
+    user = create(:valid_user)
+    expect(user.uid_number).to eq(user.id + 10000)
+  end
 end
