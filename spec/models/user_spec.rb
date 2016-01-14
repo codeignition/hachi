@@ -28,4 +28,16 @@ RSpec.describe User, :type => :model do
     user.register!
     expect(user).to be_registered
   end
+
+  it 'has a name' do
+    user = create(:valid_user)
+    expect(user).to respond_to(:name)
+  end
+
+  it 'is not valid without a name' do
+    user = build(:valid_user)
+    user.name = nil
+    user.save
+    expect(user).to_not be_valid
+  end
 end
