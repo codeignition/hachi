@@ -29,11 +29,6 @@ RSpec.describe User, :type => :model do
     expect(user).to be_registered
   end
 
-  it 'has a name' do
-    user = create(:valid_user)
-    expect(user).to respond_to(:name)
-  end
-
   it 'is not valid without a name' do
     user = build(:valid_user)
     user.name = nil
@@ -41,23 +36,34 @@ RSpec.describe User, :type => :model do
     expect(user).to_not be_valid
   end
 
-  it 'has a uid' do
-    user = create(:valid_user)
-    expect(user).to respond_to(:uid)
-  end
+  context 'has a' do
+    let(:user) { create(:valid_user) }
+    it 'name' do
+      expect(user).to respond_to(:name)
+    end
 
-  it 'has uid same as name' do
-    user = create(:valid_user)
-    expect(user.uid).to eq(user.name)
-  end
+    it 'uid' do
+      expect(user).to respond_to(:uid)
+    end
 
-  it 'has a uid number' do
-    user = create(:valid_user)
-    expect(user).to respond_to(:uid_number)
-  end
+    it 'uid same as name' do
+      expect(user.uid).to eq(user.name)
+    end
 
-  it 'has uid number of value 10000 (lower bound) plus value of id' do
-    user = create(:valid_user)
-    expect(user.uid_number).to eq(user.id + 10000)
+    it 'uid number' do
+      expect(user).to respond_to(:uid_number)
+    end
+
+    it 'uid number equal to 10000 (lower bound) plus value of id' do
+      expect(user.uid_number).to eq(user.id + 10000)
+    end
+
+    it 'dn' do
+      expect(user).to respond_to(:dn)
+    end
+
+    it 'ssh_public_key' do
+      expect(user).to respond_to(:ssh_public_key)
+    end
   end
 end
