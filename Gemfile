@@ -29,4 +29,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner'
+  gem 'test-kitchen', '~> 1.4', '>= 1.4.2'
+  gem 'kitchen-vagrant'
+  gem 'berkshelf'
 end
