@@ -1,0 +1,3 @@
+source "https://supermarket.chef.io"
+metadata
+cookbook 'test-helper', git: 'https://github.com/lipro-cookbooks/test-helper.git'

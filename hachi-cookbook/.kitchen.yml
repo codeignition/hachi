@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 2048
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: opscode-ubuntu-14.04
+
+suites:
+  - name: hachi
+    run_list:
+      - recipe[test-helper::default]
+      - recipe[hachi-cookbook::default]
+    attributes:

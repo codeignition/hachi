@@ -1,0 +1,15 @@
+name 'hachi-cookbook'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures hachi'
+long_description 'Installs/Configures hachi'
+version '0.1.0'
+
+depends 'application_ruby','~> 4.0.1'
+depends 'nginx'
+depends 'apt'
+depends 'rbenv'
+depends 'git', '~> 4.3'
+depends 'poise-ruby-build'
+

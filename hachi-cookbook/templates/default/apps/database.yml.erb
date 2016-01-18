@@ -1,0 +1,12 @@
+production:
+  adapter: <%=@adapter%>
+  encoding: <%=@encoding%>
+  database: <%= @db_name%>
+  username: <%= @username%>
+  password: <%= @password%>
+  host: <%= @host%>
+  pool: 50
+  properties:
+    useSSL: true
+    requireSSL: true
+    verifyServerCertificate: true

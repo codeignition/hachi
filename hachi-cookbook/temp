@@ -1,0 +1,4 @@
+execute "installing dependencies" do
+ command 'apt-get install -y gcc g++ nodejs sqlite3 libsqlite3-dev zlib1g-dev libxml2'
+end
+
