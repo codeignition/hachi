@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
+  UID_NUMBER_LOWER_BOUND = 10000
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :name, presence: true
-
   before_create :set_uid_same_as_name
-  before_update :set_uid_same_as_name
+  after_create :set_uid_number
 
   def send_on_create_confirmation_instructions; end
 
@@ -29,5 +29,14 @@ class User < ActiveRecord::Base
   private
   def set_uid_same_as_name
     self.uid = self.name
+  end
+
+  def set_uid_number
+    update_attribute(:uid_number, id + UID_NUMBER_LOWER_BOUND)
+    reset_email_to_saved_state
+  end
+
+  def reset_email_to_saved_state
+    self.email = User.find(self.id).email
   end
 end

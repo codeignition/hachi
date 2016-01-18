@@ -29,32 +29,41 @@ RSpec.describe User, :type => :model do
     expect(user).to be_registered
   end
 
-  it 'has a name' do
-    user = create(:valid_user)
-    expect(user.name).to eq('Test')
-  end
-
-  it 'should have a name' do
+  it 'is not valid without a name' do
     user = build(:valid_user)
     user.name = nil
     user.save
     expect(user).to_not be_valid
   end
 
-  it 'has a uid' do
-    user = create(:valid_user)
-    expect(user).to respond_to(:uid)
-  end
+  context 'has a' do
+    let(:user) { create(:valid_user) }
+    it 'name' do
+      expect(user).to respond_to(:name)
+    end
 
-  it 'should have uid same as name' do
-    user = create(:valid_user)
-    expect(user.uid).to eq(user.name)
-  end
+    it 'uid' do
+      expect(user).to respond_to(:uid)
+    end
 
-  it 'should have uid same as the new name if name is changed' do
-    user = create(:valid_user)
-    new_name = 'Test New'
-    user.update_attributes(name: new_name)
-    expect(user.uid).to eq(new_name)
+    it 'uid same as name' do
+      expect(user.uid).to eq(user.name)
+    end
+
+    it 'uid number' do
+      expect(user).to respond_to(:uid_number)
+    end
+
+    it 'uid number equal to 10000 (lower bound) plus value of id' do
+      expect(user.uid_number).to eq(user.id + 10000)
+    end
+
+    it 'dn' do
+      expect(user).to respond_to(:dn)
+    end
+
+    it 'ssh_public_key' do
+      expect(user).to respond_to(:ssh_public_key)
+    end
   end
 end
