@@ -1,0 +1,30 @@
+# puma Upstart script
+
+description "puma"
+
+start on (net-device-up
+and local-filesystems
+and runlevel [2345])
+
+stop on runlevel [016]
+
+respawn
+
+respawn limit 10 30
+
+normal exit 0 TERM
+
+reload signal USR1
+limit nofile 65536 65536
+
+setuid <%=@app_user%>
+setgid <%=@app_group%>
+
+script
+exec /bin/bash <<'EOT'
+export TZ=Asia/Jakarta
+cd <%=node.apps.location%>
+source /etc/default/<%=@app_name%>.conf
+PATH=<%=@ruby_location%>:$PATH bundle exec puma -C /etc/puma/<%=@app_name%>.rb
+EOT
+end script
