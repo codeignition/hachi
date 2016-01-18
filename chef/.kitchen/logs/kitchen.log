@@ -1,0 +1,26 @@
+E, [2016-01-18T09:56:44.393492 #82409] ERROR -- Kitchen: ------Exception-------
+E, [2016-01-18T09:56:44.393569 #82409] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2016-01-18T09:56:44.393594 #82409] ERROR -- Kitchen: Message: Kitchen YAML file /Users/chi6rag/workspace/gojek/hachi/chef/.kitchen.yml does not exist.
+E, [2016-01-18T09:56:44.393607 #82409] ERROR -- Kitchen: ------Backtrace-------
+E, [2016-01-18T09:56:44.393626 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/loader/yaml.rb:74:in `read'
+E, [2016-01-18T09:56:44.393646 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:145:in `data'
+E, [2016-01-18T09:56:44.393665 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:124:in `suites'
+E, [2016-01-18T09:56:44.393674 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:175:in `filter_instances'
+E, [2016-01-18T09:56:44.393683 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:134:in `build_instances'
+E, [2016-01-18T09:56:44.393701 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/config.rb:110:in `instances'
+E, [2016-01-18T09:56:44.393710 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/command.rb:115:in `filtered_instances'
+E, [2016-01-18T09:56:44.393718 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/command.rb:145:in `parse_subcommand'
+E, [2016-01-18T09:56:44.393736 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/command/list.rb:32:in `call'
+E, [2016-01-18T09:56:44.393744 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:56:in `perform'
+E, [2016-01-18T09:56:44.393755 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:108:in `list'
+E, [2016-01-18T09:56:44.393763 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/command.rb:27:in `run'
+E, [2016-01-18T09:56:44.393772 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/invocation.rb:126:in `invoke_command'
+E, [2016-01-18T09:56:44.393780 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/cli.rb:308:in `invoke_task'
+E, [2016-01-18T09:56:44.393788 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor.rb:359:in `dispatch'
+E, [2016-01-18T09:56:44.393796 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/thor-0.19.1/lib/thor/base.rb:440:in `start'
+E, [2016-01-18T09:56:44.393804 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/bin/kitchen:13:in `block in <top (required)>'
+E, [2016-01-18T09:56:44.393834 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/lib/kitchen/errors.rb:154:in `with_friendly_errors'
+E, [2016-01-18T09:56:44.393843 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/test-kitchen-1.4.2/bin/kitchen:13:in `<top (required)>'
+E, [2016-01-18T09:56:44.393851 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/bin/kitchen:23:in `load'
+E, [2016-01-18T09:56:44.393859 #82409] ERROR -- Kitchen: /Users/chi6rag/.rbenv/versions/2.2.3/bin/kitchen:23:in `<main>'
+E, [2016-01-18T09:56:44.393867 #82409] ERROR -- Kitchen: ----------------------
