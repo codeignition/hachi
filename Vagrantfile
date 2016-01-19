@@ -13,7 +13,9 @@ export PATH=/home/vagrant/.rbenv/versions/2.2.3/bin:$PATH;
 gem install bundler
 gem install foreman
 cd /home/vagrant
-git clone https://github.com/codeignition/hachi.git && cd /home/vagrant/hachi
+rm -rf hachi
+git clone https://github.com/codeignition/hachi.git
+cd /home/vagrant/hachi
 mkdir -p shared/log shared/pids shared/sockets
 bundle install
 bundle exec rake db:drop db:migrate
@@ -21,7 +23,7 @@ bundle exec rake assets:precompile
 sudo mkdir -p /etc/nginx/ssl/
 sudo cp -r /vagrant/vagrant_config/nginx* /etc/nginx/ssl/
 sudo cp -r /vagrant/vagrant_config/default /etc/nginx/sites-enabled/
-ps ax | grep studio | awk '{print $1}' | xargs -n1 kill
+ps ax | grep puma | awk '{print $1}' | xargs -n1 kill
 RAILS_ENV=development foreman start &
 sudo service nginx restart
 SCRIPT
