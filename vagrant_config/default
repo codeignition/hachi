@@ -20,11 +20,12 @@ location ~ ^/assets/  {
 	location / {
 		proxy_pass http://hachi;
 	 	proxy_set_header Host $host;
-    		proxy_set_header X-Real-IP $remote_addr;
-	    proxy_set_header X-Forwarded-For $http_x_forwarded_for;
-	    proxy_send_timeout  120;
-	    proxy_read_timeout 120;
-	    proxy_connect_timeout 120;
-	    send_timeout  120;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $http_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto https;
+		proxy_send_timeout  120;
+		proxy_read_timeout 120;
+		proxy_connect_timeout 120;
+		send_timeout  120;
 	}
 }
