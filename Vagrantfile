@@ -5,7 +5,7 @@ sudo apt-get install -y git-core build-essential sqlite3 libsqlite3-dev autoconf
 git clone https://github.com/rbenv/rbenv.git /home/vagrant/.rbenv
 echo 'export PATH="/home/vagrant/.rbenv/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-source /home/vagrant/.bashrc
+source /home/vagrant/.bash_profile
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 rbenv install 2.2.3
 rbenv global 2.2.3
