@@ -1,5 +1,6 @@
 hachi_script = <<SCRIPT
 sudo su vagrant
+sudo apt-get update
 sudo apt-get install -y git-core build-essential sqlite3 libsqlite3-dev autoconf node nginx
 git clone https://github.com/rbenv/rbenv.git /home/vagrant/.rbenv
 echo 'export PATH="/home/vagrant/.rbenv/bin:$PATH"' >> ~/.bash_profile
