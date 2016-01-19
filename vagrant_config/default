@@ -18,7 +18,6 @@ location ~ ^/assets/  {
 	ssl_certificate /etc/nginx/ssl/nginx.crt;
 	ssl_certificate_key /etc/nginx/ssl/nginx.key;
 	location / {
-		try_files $uri $uri/ =404;
 		proxy_pass http://hachi;
 	 	proxy_set_header Host $host;
     		proxy_set_header X-Real-IP $remote_addr;
@@ -28,5 +27,4 @@ location ~ ^/assets/  {
 	    proxy_connect_timeout 120;
 	    send_timeout  120;
 	}
-
 }
