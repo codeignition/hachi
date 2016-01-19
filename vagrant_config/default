@@ -1,0 +1,32 @@
+upstream hachi { 
+	server unix:///home/vagrant/hachi/shared/sockets/hachi.sock;
+}
+server {
+	listen 443 ssl;
+	root /usr/share/nginx/html;
+	index index.html index.htm;
+  
+
+location ~ ^/assets/  {
+    expires max;
+    root /home/vagrant/hachi/public/;
+    add_header Cache-Control public;
+    add_header ETag "";
+  }
+
+	server_name localhost;
+	ssl_certificate /etc/nginx/ssl/nginx.crt;
+	ssl_certificate_key /etc/nginx/ssl/nginx.key;
+	location / {
+		try_files $uri $uri/ =404;
+		proxy_pass http://hachi;    
+	 	proxy_set_header Host $host;
+    		proxy_set_header X-Real-IP $remote_addr;1
+	    proxy_set_header X-Forwarded-For $http_x_forwarded_for;
+	    proxy_send_timeout  120;
+	    proxy_read_timeout 120;
+	    proxy_connect_timeout 120;
+	    send_timeout  120;
+	}
+
+}
