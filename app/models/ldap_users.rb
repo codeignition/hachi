@@ -26,5 +26,6 @@ class LdapUsers
       common_name = ldap_entry.cn.first
       return User.new(name: common_name, email: common_name + '@c42.in')
     end
+    nil
   end
 end
