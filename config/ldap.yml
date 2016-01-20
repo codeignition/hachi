@@ -1,0 +1,16 @@
+defaults: &DEFAULTS
+  ldap_host: '192.168.33.101'
+  ldap_port: '389'
+  ldap_admin_username: 'cn=admin,dc=c42,dc=in'
+  ldap_admin_password: '!Abcd1234'
+  ldap_treebase: 'dc=c42,dc=in'
+  ldap_dc: 'c42.in'
+
+development:
+  <<: *DEFAULTS
+
+test:
+  <<: *DEFAULTS
+
+production:
+  <<: *DEFAULTS
