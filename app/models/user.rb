@@ -26,6 +26,16 @@ class User < ActiveRecord::Base
     update_attributes(registered: true)
   end
 
+  def ==(other)
+    return false if other.nil? || is_user?(other)
+    return true if self.object_id == other.object_id
+    self.name == other.name && self.email == other.email
+  end
+
+  def hash
+    [name, email].hash
+  end
+
   private
   def set_uid_same_as_name
     self.uid = self.name
@@ -38,5 +48,9 @@ class User < ActiveRecord::Base
 
   def reset_email_to_saved_state
     self.email = User.find(self.id).email
+  end
+
+  def is_user?(other)
+    !other.is_a?(User)
   end
 end

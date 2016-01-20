@@ -1,6 +1,38 @@
 require "rails_helper"
 
 RSpec.describe User, :type => :model do
+  context 'when compared for equality with' do
+    let(:user) { User.new(name: 'Test', email: 'test@example.com') }
+
+    it 'nil is not equal' do
+      expect(user == nil).to eq(false)
+    end
+
+    it 'anything other than User is not equal' do
+      expect(user == Object.new).to eq(false)
+    end
+
+    it 'itself is equal' do
+      expect(user == user).to eq(true)
+    end
+
+    it 'other User with different name and email is not equal' do
+      other_user = User.new(name: 'Another Test', email: 'another_test@example.com')
+      expect(user == other_user).to eq(false)
+    end
+
+    it 'other User with same name and email is equal' do
+      other_user = User.new(name: 'Test', email: 'test@example.com')
+      expect(user == other_user).to eq(true)
+    end
+  end
+
+  it 'with the same name and email are same in business context' do
+    user = User.new(name: 'Test', email: 'test@example.com')
+    other_user = User.new(name: 'Test', email: 'test@example.com')
+    expect(user.hash).to eq(other_user.hash)
+  end
+
   it 'should not receive a confirmation email when created' do
     expect {
       create(:valid_user)
