@@ -156,6 +156,7 @@ GEM
     mixlib-shellout (2.2.5)
     multi_json (1.11.2)
     multipart-post (2.0.0)
+    net-ldap (0.13.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -320,6 +321,7 @@ DEPENDENCIES
   jquery-rails
   kitchen-vagrant
   letter_opener
+  net-ldap
   puma
   rails (= 4.2.5)
   rspec-rails (~> 3.0)

@@ -15,6 +15,7 @@ gem 'sqlite3'
 gem 'slim-rails'
 gem 'doorkeeper'
 gem 'puma'
+gem 'net-ldap'
 
 group :development, :test do
   gem 'byebug'
