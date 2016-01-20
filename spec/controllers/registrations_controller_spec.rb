@@ -11,45 +11,53 @@ RSpec.describe RegistrationsController, :type => :controller do
   end
 
   describe 'when tried to register' do
-    context 'a user who is present in the database' do
-      let(:valid_user) { create(:valid_user) }
-      it 'a confirmation email is queued' do
+    context 'a user who is not present in ldap and database' do
+      it 'no email is queued' do
         expect {
-          post :create, user: { email: valid_user.email }
-        }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      end
-
-      it 'is registered' do
-        post :create, user: { email: valid_user.email }
-        valid_user.reload
-        expect(valid_user).to be_registered
-      end
-
-      it 'and is registered already, a confirmation email is not queued' do
-        registered_valid_user = create(:valid_user, registered: true)
-        expect {
-          post :create, user: { email: registered_valid_user.email }
+          post :create, user: {email: 'user_not_present@c42.in'}
         }.to_not change { ActionMailer::Base.deliveries.count }
       end
 
-      it 'it has the correct flash notice promising a confirmation email sent' do
-        valid_user = create(:valid_user)
-        post :create, user: { email: valid_user.email }
-        expect(flash[:notice]).to eq('A confirmation email has been sent to you')
+      it 'he is not added to database' do
+        expect {
+          post :create, user: {email: 'user_not_present@c42.in'}
+        }.to_not change { User.count }
       end
     end
 
-    context 'a user who is not present in the database' do
-      it 'no confirmation email is queued' do
+    context 'a user who is present in ldap but not in database' do
+      it 'he is added to database' do
         expect {
-          post :create, user: { email: 'unsaved_user-email@example.com' }
+          post :create, user: {email: 'adam@c42.in'}
+        }.to change { User.count }.by(1)
+      end
+
+      it 'an email is queued' do
+        expect {
+          post :create, user: {email: 'adam@c42.in'}
+        }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+    end
+
+    context 'a user who is present in ldap and in database' do
+      it 'no email is queued' do
+        valid_user = create(:valid_user, name: 'Adam', email: 'adam@c42.in')
+        expect {
+          post :create, user: {email: valid_user.email}
         }.to_not change { ActionMailer::Base.deliveries.count }
       end
 
-      it 'is not registered' do
-        user = build(:valid_user)
-        post :create, user: { email: user.email }
-        expect(user).to_not be_registered
+      it 'no new user is created' do
+        valid_user = create(:valid_user, name: 'Adam', email: 'adam@c42.in')
+        expect {
+          post :create, user: {email: valid_user.email}
+        }.to_not change { User.count }
+      end
+
+      it 'should not be saved again' do
+        unregistered_valid_user = create(:valid_user, name: 'Adam', email: 'adam@c42.in')
+        expect(unregistered_valid_user).to_not receive(:save!)
+        post :create, user: {email: unregistered_valid_user.email}
       end
     end
   end
