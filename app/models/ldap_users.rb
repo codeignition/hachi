@@ -18,9 +18,12 @@ class LdapUsers
 
   def find_by_common_name(common_name)
     filter_condition = Net::LDAP::Filter.eq(COMMON_NAME, common_name)
-    @ldap.search(:base => APP_CONFIG['ldap_treebase'], :filter => filter_condition) do |ldap_entry|
-      common_name = ldap_entry.cn.first
-      return User.new(name: common_name, email: common_name + '@'+APP_CONFIG['ldap_dc'])
+    begin
+      @ldap.search(:base => APP_CONFIG['ldap_treebase'], :filter => filter_condition) do |ldap_entry|
+        common_name = ldap_entry.cn.first
+        return User.new(name: common_name, email: common_name + '@'+APP_CONFIG['ldap_dc'])
+      end
+    rescue Net::LDAP::ConnectionRefusedError
     end
     nil
   end
