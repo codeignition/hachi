@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114101340) do
+ActiveRecord::Schema.define(version: 20160121040358) do
+
+  create_table "ldap_configuration", force: :cascade do |t|
+    t.string "host"
+    t.string "port"
+    t.string "dn"
+    t.string "search_base"
+    t.string "email"
+    t.string "ssh_public_key"
+    t.string "hachi_admin_usernames"
+    t.string "ldap_admin_username"
+    t.string "ldap_admin_password"
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
