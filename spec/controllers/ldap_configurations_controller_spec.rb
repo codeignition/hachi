@@ -7,9 +7,30 @@ RSpec.describe LdapConfigurationsController, :type => :controller do
   end
 
   describe 'creation of ldap configuration' do
-    it 'with valid params redirects to root path' do
-      post :create, ldap_configuration: valid_ldap_configuration
-      expect(response).to redirect_to(root_path)
+    context 'with valid params' do
+      it 'redirects to root path' do
+        post :create, ldap_configuration: valid_ldap_configuration
+        expect(response).to redirect_to(root_path)
+      end
+
+      it 'creates a new ldap configuration' do
+        expect {
+          post :create, ldap_configuration: valid_ldap_configuration
+        }.to change { LdapConfiguration.count }.by(1)
+      end
+    end
+
+    context 'with invalid params' do
+      it 'does not create a new ldap configuration' do
+        expect {
+          post :create, ldap_configuration: invalid_ldap_configuration
+        }.to_not change { LdapConfiguration.count }
+      end
+
+      it 'renders new ldap configuration template' do
+        post :create, ldap_configuration: invalid_ldap_configuration
+        expect(response).to render_template :new
+      end
     end
   end
 
@@ -26,5 +47,12 @@ RSpec.describe LdapConfigurationsController, :type => :controller do
       'ldap_admin_username' => 'test_admin',
       'ldap_admin_password' => '!Abcd1234'
     }
+  end
+
+  def invalid_ldap_configuration
+    configuration = valid_ldap_configuration
+    configuration['host'] = ''
+    configuration['search_base'] = ''
+    configuration
   end
 end
