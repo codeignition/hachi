@@ -4,8 +4,8 @@ class LdapConfigurationsController < ActionController::Base
   end
 
   def create
-    ldap_configuration = LdapConfiguration.create(ldap_configuration_params)
-    if(ldap_configuration.valid?)
+    @ldap_configuration = LdapConfiguration.new(ldap_configuration_params)
+    if(@ldap_configuration.save)
       redirect_to root_path
       return
     end
