@@ -121,9 +121,9 @@ RSpec.describe User, :type => :model do
     expect(unsaved_user_with_same_name_but_different_email).to_not be_registered
   end
 
-  it 'should not be registered if it has the same email but different name compared to a registered user' do
+  it 'should be registered if it has the same email but different name compared to a registered user' do
     user = create(:valid_user, registered: true)
     unsaved_user_with_same_email_but_different_name = User.new(name: 'Unsaved User', email: user.email)
-    expect(unsaved_user_with_same_email_but_different_name).to_not be_registered
+    expect(unsaved_user_with_same_email_but_different_name).to be_registered
   end
 end

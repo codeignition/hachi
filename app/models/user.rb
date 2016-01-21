@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def registered?
-    found_user = User.find_by(name: name, email: email)
+    found_user = User.find_by(email: email)
     return (found_user.registered == true) if found_user
     false
   end
