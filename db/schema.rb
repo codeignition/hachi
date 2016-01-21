@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160121040358) do
 
-  create_table "ldap_configuration", force: :cascade do |t|
+  create_table "ldap_configurations", force: :cascade do |t|
     t.string "host"
     t.string "port"
     t.string "dn"

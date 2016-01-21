@@ -1,6 +1,6 @@
-class AddLdapConfiguration < ActiveRecord::Migration
+class AddLdapConfigurations < ActiveRecord::Migration
   def change
-    create_table :ldap_configuration do |t|
+    create_table :ldap_configurations do |t|
       t.string :host
       t.string :port
       t.string :dn
