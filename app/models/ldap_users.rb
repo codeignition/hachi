@@ -24,6 +24,7 @@ class LdapUsers
         return User.new(name: common_name, email: common_name + '@'+APP_CONFIG['ldap_dc'])
       end
     rescue Net::LDAP::ConnectionRefusedError
+      Rails.logger.info('Could not connect to LDAP Server at')
     end
     nil
   end

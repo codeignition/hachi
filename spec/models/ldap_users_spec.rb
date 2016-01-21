@@ -15,10 +15,19 @@ RSpec.describe LdapUsers, :type => :model do
     expect(ldap_users.find_by_common_name('jenson')).to eq(nil)
   end
 
-  xit 'should not be able to find a user if connection cannot be established' do
-    ldap_users = LdapUsers.new
-    ldap_users.instance_variable_set(:@ldap, unreachable_ldap_connection)
-    expect(ldap_users.find_by_common_name('adam')).to eq(nil)
+  context 'when ldap connection cannot be established' do
+    before(:each) {
+      @ldap_users = LdapUsers.new
+      @ldap_users.instance_variable_set(:@ldap, unreachable_ldap_connection)
+    }
+    it 'user should not be found' do
+      expect(@ldap_users.find_by_common_name('adam')).to eq(nil)
+    end
+
+    it 'connection error should be logged to Rails logger' do
+      expect(Rails.logger).to receive(:info).with('Could not connect to LDAP Server at')
+      @ldap_users.find_by_common_name('adam')
+    end
   end
 
   private
