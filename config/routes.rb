@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   root 'static_pages#home'
   get '/ldap_configurations/new' => 'ldap_configurations#new', as: 'new_ldap_configuration'
+  post '/ldap_configurations/' => 'ldap_configurations#create'
 end
