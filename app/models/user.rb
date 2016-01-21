@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   before_create :set_uid_same_as_name
   after_create :set_uid_number
 
-  def send_on_create_confirmation_instructions; end
+  def send_on_create_confirmation_instructions;
+  end
 
   def password_required?
     super if confirmed?
@@ -20,6 +21,12 @@ class User < ActiveRecord::Base
     self.errors[:password_confirmation] << "can't be blank" if password_confirmation.blank?
     self.errors[:password_confirmation] << "does not match password" if password != password_confirmation
     password == password_confirmation && !password.blank?
+  end
+
+  def registered?
+    found_user = User.find_by(name: name, email: email)
+    return (found_user.registered == true) if found_user
+    false
   end
 
   def register!

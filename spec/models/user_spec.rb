@@ -98,4 +98,32 @@ RSpec.describe User, :type => :model do
       expect(user).to respond_to(:ssh_public_key)
     end
   end
+
+  it 'knows if it is registered' do
+    user = create(:valid_user, registered: true)
+    expect(user).to be_registered
+  end
+
+  it 'knows if it is not registered' do
+    user = create(:valid_user)
+    expect(user).to_not be_registered
+  end
+
+  it 'should be registered if it has the same name and email as a registered user' do
+    user = create(:valid_user, registered: true)
+    same_unsaved_user = User.new(name: user.name, email: user.email)
+    expect(same_unsaved_user).to be_registered
+  end
+
+  it 'should not be registered if it has the same name but different email compared to a registered user' do
+    user = create(:valid_user, registered: true)
+    unsaved_user_with_same_name_but_different_email = User.new(name: user.name, email: 'unsaved_user@example.com')
+    expect(unsaved_user_with_same_name_but_different_email).to_not be_registered
+  end
+
+  it 'should not be registered if it has the same email but different name compared to a registered user' do
+    user = create(:valid_user, registered: true)
+    unsaved_user_with_same_email_but_different_name = User.new(name: 'Unsaved User', email: user.email)
+    expect(unsaved_user_with_same_email_but_different_name).to_not be_registered
+  end
 end
