@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     get '/users/sign_up' => 'registrations#new'
   end
   root 'static_pages#home'
-  get '/ldap_configurations/new' => 'ldap_configuration#new', as: 'new_ldap_configuration'
+  get '/ldap_configurations/new' => 'ldap_configurations#new', as: 'new_ldap_configuration'
 end
