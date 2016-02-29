@@ -33,7 +33,7 @@ RSpec.describe LdapUsers, :type => :model do
   private
   def unreachable_ldap_connection
     Net::LDAP.new(
-        :host => '000.000.0.0',
+        :host => '1.1.1.1',
         :port => '389',
         :auth => {
             :method => :simple,

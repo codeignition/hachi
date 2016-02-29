@@ -1,10 +1,10 @@
 defaults: &DEFAULTS
-  ldap_host: '192.168.33.101'
+  ldap_host: localhost
   ldap_port: '389'
-  ldap_admin_username: 'cn=admin,dc=c42,dc=in'
+  ldap_admin_username: 'cn=admin,dc=go-jek,dc=com'
   ldap_admin_password: '!Abcd1234'
-  ldap_treebase: 'dc=c42,dc=in'
-  ldap_dc: 'c42.in'
+  ldap_treebase: 'dc=go-jek,dc=com'
+  ldap_dc: 'go-jek.com'
 
 development:
   <<: *DEFAULTS

@@ -19,6 +19,7 @@ gem 'net-ldap'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry'
 end
 group :development do
   gem 'letter_opener'
@@ -27,6 +28,7 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner'
